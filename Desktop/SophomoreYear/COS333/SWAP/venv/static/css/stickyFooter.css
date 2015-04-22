@@ -1,0 +1,27 @@
+body {
+	margin: 0 0 50px;
+}
+
+footer {
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	height: 50px;
+	background: #111;
+}
+
+ul.navigationBar {
+	list-style: none;
+}
+
+ul.navigationBar li{
+	display: inline-block;
+}
+
+ul.navigationBar li a{
+	color: #FFF;
+	text-decoration: none;
+}
+#showSwap {
+	display: none;
+}
