@@ -1,0 +1,65 @@
+<html>
+
+<head>
+<title>FTC Case Table Display</title>
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="static/css/skeleton.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css">
+<script type="text/javascript" src= "//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src= "//cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src= "static/js/table.js"></script>
+</head>
+
+
+
+
+<body>
+<div class= "container">
+<h1> Enter a New FTC Case </h1>
+
+
+<form action="http://127.0.0.1:5000/add" method="post">
+    <label for="case">Case: </label>
+              <input type="text" name="case"><br>
+    <label for="date">Date: </label>
+              <input type="text" name="date"><br>
+    <LABEL for="companyName">Company Name: </LABEL>
+              <INPUT type="text" name="companyName"><BR>
+    <LABEL for="actViolated">Act Violated: </LABEL>
+              <INPUT type="text" name="actViolated"><BR>
+    <LABEL for="categoryPC">Category of Problematic Conduct: </LABEL>
+              <INPUT type="text" name="categoryPC"><BR>
+    <LABEL for="summaryPC">Summary of Problematic Conduct: </LABEL>
+              <INPUT type="text" name="summaryPC"><BR>
+    <LABEL for="redressObtained">Redress Obtained: </LABEL>
+              <INPUT type="text" name="redressObtained"><BR>
+    <LABEL for="financial">Financial: </LABEL>
+              <INPUT type="text" name="financial"><BR>
+    <LABEL for="audit">Audit: </LABEL>
+              <INPUT type="text" name="audit"><BR>
+    <LABEL for="prohibitions">Prohibitions: </LABEL>
+              <INPUT type="text" name="prohibitions"><BR>
+    <LABEL for="pressCoverage">Press Coverage: </LABEL>
+              <INPUT type="text" name="pressCoverage"><BR>
+    <INPUT type="submit" value="Send"> <INPUT type="reset">
+ </FORM>
+
+
+
+
+</div>
+</body>
+
+
+
+</html>

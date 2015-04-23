@@ -1,0 +1,75 @@
+<html>
+
+<head>
+<title>FTC Case Table Display</title>
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="static/css/skeleton.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css">
+<script type="text/javascript" src= "//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src= "//cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src= "static/js/table.js"></script>
+</head>
+
+
+
+
+<body>
+<div class= "container">
+<h1> Below Is Table </h1>
+
+<table id= "ftcTable" class= "display" cellspacing ="0" width= "100%">
+	<thead>
+		<tr>
+			<th>Case</th>
+			<th>Date</th>
+			<th>Company Name(s)</th>
+			<th>Act Violated</th>
+			<th>Category of Problematic Conduct</th>
+			<th>Summary of Problematic Conduct</th>
+			<th>Redress Obtained</th>
+			<th>Financial</th>
+			<th>Audit</th>
+			<th>Prohibitions/Mandated Actions</th>
+			<th>Press coverage</th>
+		</tr>
+	</thead>
+	<tfoot> </tfoot>
+	<tbody> 
+		{% for case in tableData %}
+		<tr>
+			{% for x in case %}
+			<td> {{x}} </td>
+			{% endfor %}
+
+
+
+		</tr>
+
+
+		{% endfor %}
+	</tbody>
+
+
+</table>
+
+
+</div>
+</body>
+
+
+
+</html>
