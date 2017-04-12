@@ -1,1 +1,0 @@
-web: gunicorn SwapHomepage:app --log-file=-
