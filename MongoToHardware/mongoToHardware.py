@@ -165,7 +165,7 @@ def run_poll():
 	conn_btly = bitly_api.Connection(access_token='fe3a361216aa47a6a823a32613bba81ddf01cf29')
 
 	#get links
-	clicks = conn_btly.link_clicks('http://bit.ly/stc309test', rollup=False, unit='hour')
+	clicks = conn_btly.link_clicks('http://bit.ly/buzzhaben', rollup=False, unit='hour')
 
 	numberInAudience = clicks[0]["clicks"] + clicks[1]["clicks"]
 
