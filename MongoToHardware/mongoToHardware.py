@@ -148,23 +148,16 @@ def check_db(sc, repeatChecker, canReactDB, waitUntil, uart):
 
 def send_data(data, uart):
 	if data is 1:
-		uart.write('mo\r\n')	##change to correct  ##right now mo is on and mf is off
+		uart.write('mo\r\n')	##change to haha  ##right now mo is on and mf is off
 	elif data is 2:
-		uart.write('mo\r\n')	##change to correct
+		uart.write('mo\r\n')	##change to wow
 	elif data is 3:
-		uart.write('mf\r\n')	##change to correct	
+		uart.write('mf\r\n')	##change to confusion
 	elif data is 4:
-		uart.write('mf\r\n')	##change to correct		
+		uart.write('mf\r\n')	##change to love
 	print("Sent " + str(data) +  " to the device.")
 	# Now wait up to one minute to receive data from the device.
 	print('hopefully data given to device...')
-	# received = uart.read(timeout_sec=60)
-	# if received is not None:
-	#     # Received data, print it out.
-	#     print('Received: {0}'.format(received))
-	# else:
-	#     # Timeout waiting for data, None is returned.
-	#     print('Received no data!')
 
 	
 def run_poll():
@@ -181,7 +174,12 @@ def run_poll():
 	for doc in pollDB:
 		if doc["name"] == "poll":
 			currentPoll = doc["score"]
-	print "the percent of people who agree with the poll is (should be less than 100) " + str((currentPoll-startPoll)/numberInAudience)
+	pollFinal = int((currentPoll-startPoll)/numberInAudience) * 10
+	print "the percent of people who agree with the poll is (should be less than 100) " + str(pollFinal)
+
+	for dec in pollFinal:
+		uart.write('mf\r\n')	##change to poll
+		time.sleep(0.5)
 
 
 # Get the BLE provider for the current platform.
