@@ -116,7 +116,7 @@ def check_db(sc, repeatChecker, canReactDB, waitUntil, uart):
 	repeatChecker = repeatChecker + 1
 
 	for score in scores:
-		if (scores[score] >= starting_scores[score] + 5) and (repeatChecker - canReactDB[score] > 6) and (waitUntil <= repeatChecker):
+		if (scores[score] >= starting_scores[score] + 1) and (repeatChecker - canReactDB[score] > 1) and (waitUntil <= repeatChecker):
 			if score == "haha":
 				print "large change in " + score + " sending a " + "1" + " to the hardware!"
 				send_data(1, uart)
@@ -133,28 +133,28 @@ def check_db(sc, repeatChecker, canReactDB, waitUntil, uart):
 				run_poll()
 
 			canReactDB[score] = repeatChecker
-			waitUntil = repeatChecker + 4
+			waitUntil = repeatChecker + 1
 			#reset all scores
 			for score in scores:
 				starting_scores[score] = scores[score]
-		elif (scores[score] >= starting_scores[score] + 5) and not (repeatChecker - canReactDB[score] > 6):
+		elif (scores[score] >= starting_scores[score] + 1) and not (repeatChecker - canReactDB[score] > 1):
 			starting_scores[score] = scores[score]
-		elif (scores[score] >= starting_scores[score] + 5) and not (waitUntil <= repeatChecker):
+		elif (scores[score] >= starting_scores[score] + 1) and not (waitUntil <= repeatChecker):
 			starting_scores[score] = scores[score]
 
-	s.enter(5, 1, check_db, (sc,repeatChecker, canReactDB, waitUntil, uart))
+	s.enter(3, 1, check_db, (sc,repeatChecker, canReactDB, waitUntil, uart))
 
 
 
 def send_data(data, uart):
 	if data is 1:
-		uart.write('mo\r\n')	##change to haha  ##right now mo is on and mf is off
+		uart.write('mh\r\n')	##change to haha  ##right now mo is on and mf is off
 	elif data is 2:
-		uart.write('mo\r\n')	##change to wow
+		uart.write('mw\r\n')	##change to wow
 	elif data is 3:
-		uart.write('mf\r\n')	##change to confusion
+		uart.write('ml\r\n')	##change to confusion
 	elif data is 4:
-		uart.write('mf\r\n')	##change to love
+		uart.write('mp\r\n')	##change to love
 	print("Sent " + str(data) +  " to the device.")
 	# Now wait up to one minute to receive data from the device.
 	print('hopefully data given to device...')
@@ -177,7 +177,7 @@ def run_poll():
 	pollFinal = int((currentPoll-startPoll)/numberInAudience) * 10
 	print "the percent of people who agree with the poll is (should be less than 100) " + str(pollFinal)
 
-	for dec in pollFinal:
+	for dec in range(0,pollFinal):
 		uart.write('mf\r\n')	##change to poll
 		time.sleep(0.5)
 
