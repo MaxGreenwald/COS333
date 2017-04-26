@@ -117,20 +117,20 @@ def check_db(sc, repeatChecker, canReactDB, waitUntil, uart):
 
 	for score in scores:
 		if (scores[score] >= starting_scores[score] + 1) and (repeatChecker - canReactDB[score] > 1) and (waitUntil <= repeatChecker):
-			if score == "haha":
+			if score == "positivereaction":
 				print "large change in " + score + " sending a " + "1" + " to the hardware!"
 				send_data(1, uart)
-			elif score == "wow":
+			elif score == "bored":
 				print "large change in " + score + " sending a " + "2" + " to the hardware!"
 				send_data(2, uart)
-			elif score == "love":
+			elif score == "confusion":
 				print "large change in " + score + " sending a " + "3" + " to the hardware!"
 				send_data(3, uart)
-			elif score == "confusion":
+			elif score == "notAThing":
 				print "large change in " + score + " sending a " + "4" + " to the hardware!"
 				send_data(4, uart)
 			if score == "poll":
-				run_poll()
+				send_data(4, uart)
 
 			canReactDB[score] = repeatChecker
 			waitUntil = repeatChecker + 1
@@ -148,38 +148,38 @@ def check_db(sc, repeatChecker, canReactDB, waitUntil, uart):
 
 def send_data(data, uart):
 	if data is 1:
-		uart.write('mh\r\n')	##change to haha  ##right now mo is on and mf is off
+		uart.write('m1\r\n')	##change to haha  ##right now mo is on and mf is off
 	elif data is 2:
-		uart.write('mw\r\n')	##change to wow
+		uart.write('m3\r\n')	##change to wow
 	elif data is 3:
-		uart.write('ml\r\n')	##change to confusion
+		uart.write('m2\r\n')	##change to confusion
 	elif data is 4:
-		uart.write('mp\r\n')	##change to love
+		uart.write('ma\r\n')	##change to love
 	print("Sent " + str(data) +  " to the device.")
 	# Now wait up to one minute to receive data from the device.
 	print('hopefully data given to device...')
 
 	
-def run_poll():
-	###### use for bitly thing #####
-	conn_btly = bitly_api.Connection(access_token='fe3a361216aa47a6a823a32613bba81ddf01cf29')
+#def run_poll():
+	# ###### use for bitly thing #####
+	# conn_btly = bitly_api.Connection(access_token='fe3a361216aa47a6a823a32613bba81ddf01cf29')
 
-	#get links
-	clicks = conn_btly.link_clicks('http://bit.ly/buzzhaben', rollup=False, unit='hour')
+	# #get links
+	# clicks = conn_btly.link_clicks('http://bit.ly/buzzhaben', rollup=False, unit='hour')
 
-	numberInAudience = clicks[0]["clicks"] + clicks[1]["clicks"]
+	# numberInAudience = clicks[0]["clicks"] + clicks[1]["clicks"]
 
-	pollDB = db.poll.find()
-	currentPoll = 0
-	for doc in pollDB:
-		if doc["name"] == "poll":
-			currentPoll = doc["score"]
-	pollFinal = int((currentPoll-startPoll)/numberInAudience) * 10
-	print "the percent of people who agree with the poll is (should be less than 100) " + str(pollFinal)
+	# pollDB = db.poll.find()
+	# currentPoll = 0
+	# for doc in pollDB:
+	# 	if doc["name"] == "poll":
+	# 		currentPoll = doc["score"]
+	# pollFinal = int((currentPoll-startPoll)/numberInAudience) * 10
+	# print "the percent of people who agree with the poll is (should be less than 100) " + str(pollFinal)
 
-	for dec in range(0,pollFinal):
-		uart.write('mf\r\n')	##change to poll
-		time.sleep(0.5)
+	# for dec in range(0,pollFinal):
+	# 	uart.write('mf\r\n')	##change to poll
+	# 	time.sleep(0.5)
 
 
 # Get the BLE provider for the current platform.
